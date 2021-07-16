@@ -1,23 +1,26 @@
-# fly.toml file generated for redis-example on 2020-10-30T20:01:11-05:00
+# fly.toml file generated for sxt-redis-dev on 2021-07-16T16:40:50+01:00
 
-app = "redis-example"
+app = "sxt-redis-dev"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
 
 [[mounts]]
-source      = "redis_server"
-destination = "/data"
+  destination = "/data"
+  source = "redis_server"
 
 [[services]]
-internal_port = 6379
-protocol      = "tcp"
+  internal_port = 6379
+  protocol = "tcp"
 
   [services.concurrency]
-  hard_limit = 25
-  soft_limit = 20
+    hard_limit = 25
+    soft_limit = 20
 
   [[services.ports]]
-  handlers = []
-  port     = "10000"
+    handlers = []
+    port = "10000"
 
   [[services.tcp_checks]]
-  interval = 10000
-  timeout  = 2000
+    interval = 10000
+    timeout = 2000
